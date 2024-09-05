@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 77.0, 1191.0, 921.0 ],
+		"rect" : [ 34.0, 77.0, 1852.0, 921.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,98 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-28",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 247.0, 273.0, 95.0, 22.0 ],
-					"text" : "sfizz~ drums.sfz"
+					"fontsize" : 18.0,
+					"id" : "obj-36",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 202.0, 450.0, 29.0, 27.0 ],
+					"text" : "7)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-35",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 202.0, 361.0, 29.0, 27.0 ],
+					"text" : "6)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-27",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 202.0, 270.5, 29.0, 27.0 ],
+					"text" : "5)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-26",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 202.0, 200.5, 29.0, 27.0 ],
+					"text" : "4)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-20",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 76.0, 124.5, 29.0, 27.0 ],
+					"text" : "3)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-18",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 76.0, 81.5, 29.0, 27.0 ],
+					"text" : "2)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-8",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 76.0, 41.5, 29.0, 27.0 ],
+					"text" : "1)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontsize" : 18.0,
+					"id" : "obj-2",
+					"linecount" : 34,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 820.0, 44.0, 984.0, 710.0 ],
+					"text" : "Drum sampler in MaxMSP using sfizz~\n\nThe sfizz~ object makes creating samplers in Max a lot more approachable. In this lab, we're going to make a simple\ndrum sampler, and learn the basics about writing our own .sfz files.\n\nNote that there is already an interface built into the patch. This is included for a bit of visual clarity, you don't have to\nmodify it in any way, but you might have to connect to and from it.\n\n1) Start off by making a \"midiin\" object. \"midiin\" detects any MIDI input received by your computer.\n\n2) Now, make a \"notein\" object, and connect it to \"midiin\". \"Notein\" looks for two bits of information from a MIDI message:\n    pitch and velocity.\n\n3) Next, make a \"stripnote\" object. Connect the left outlet of \"notein\" to the left inlet of \"stripnote,\" then connect the middle\n    outlet of \"notein\" to the right inlet of \"stripnote\". \"stripnote\" filters out all MIDI noteoff messages. If we didn't include it in\n    our patch, each time we press a MIDI key/pad, it would trigger twice. Connect \"stripnote\" to the leftmost inlet of \"sel\"\n\nThe first three steps were only necessary because we decieded to include a little user interface to coorelated with the pads on your MIDI controllers. If we didn't want a user interface, you could connect \"midiin\" directly to what we're going to make in step 4.\n\n4) Then, make a \"makenote\" object with the arguments \"127 250\". \"makenote\" turns a number into a MIDI noteon and noteoff message pair. Connect the number box above the \"4)\" to the left inlet of \"makenote\".\n\n5) Next, make an \"sfizz~\" object with the argument \"drums-demo.sfz\". \"sfizz~\" expects a .sfz file to be provided as an argument. We've already provided a framework file for you that has instructions about how to write code into it. Lock the patch and double click the \"sfizz~\" object to look at the file. Once you're done editting the file, save it, and continue to the next step.\n\n6) Now, make a \"live.gain~\" object. Connect \"sfizz~\"'s left and right outlets to \"live.gain~\"'s left and right inlets. \"live.gain~\"  \n    will be used to control our outgoing volume.\n\n7) Lastly, make an \"ezdac~\" object. Connect \"live.gain~\"'s two leftmost outlets to \"ezdac~\"'s left and right inlets. Toggle \"ezdac~\" and use your MIDI keyboard or click the buttons to hear your sampler in action!"
 				}
 
 			}
@@ -59,18 +144,6 @@
 					"outlettype" : [ "bang", "bang", "bang", "bang", "bang", "bang", "bang", "bang", "" ],
 					"patching_rect" : [ 247.0, 44.0, 157.0, 22.0 ],
 					"text" : "sel 36 37 38 39 40 41 42 43"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-33",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "int", "int" ],
-					"patching_rect" : [ 123.0, 127.0, 55.0, 22.0 ],
-					"text" : "stripnote"
 				}
 
 			}
@@ -167,30 +240,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 470.75, 273.0, 29.5, 22.0 ],
 					"text" : "36"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-21",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "int", "int", "int" ],
-					"patching_rect" : [ 123.0, 84.0, 41.0, 22.0 ],
-					"text" : "notein"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-17",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"patching_rect" : [ 123.0, 44.0, 40.0, 22.0 ],
-					"text" : "midiin"
 				}
 
 			}
@@ -406,90 +455,12 @@
 				}
 
 			}
-, 			{
-				"box" : 				{
-					"id" : "obj-19",
-					"lastchannelcount" : 0,
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"orientation" : 1,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 247.0, 351.0, 157.0, 47.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_longname" : "live.gain~",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 0,
-							"parameter_shortname" : "live.gain~",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
-						}
-
-					}
-,
-					"varname" : "live.gain~"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bubble" : 1,
-					"id" : "obj-16",
-					"linecount" : 2,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 301.0, 441.0, 64.0, 38.0 ],
-					"text" : "start audio"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"local" : 1,
-					"maxclass" : "ezdac~",
-					"numinlets" : 2,
-					"numoutlets" : 0,
-					"patching_rect" : [ 247.0, 441.0, 45.0, 45.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-11",
-					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 2,
-					"outlettype" : [ "float", "float" ],
-					"patching_rect" : [ 247.0, 203.0, 108.0, 22.0 ],
-					"text" : "makenote 127 250"
-				}
-
-			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-25", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-10", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-28", 1 ],
-					"source" : [ "obj-11", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-28", 0 ],
-					"source" : [ "obj-11", 0 ]
 				}
 
 			}
@@ -519,42 +490,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-21", 0 ],
-					"source" : [ "obj-17", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 1 ],
-					"source" : [ "obj-19", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-19", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-33", 1 ],
-					"source" : [ "obj-21", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-33", 0 ],
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 480.25, 297.0, 407.0, 297.0, 407.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-22", 0 ]
 				}
 
@@ -562,6 +499,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 575.25, 306.0, 405.0, 306.0, 405.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-23", 0 ]
 				}
 
@@ -569,6 +507,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 668.25, 306.0, 404.0, 306.0, 404.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-24", 0 ]
 				}
 
@@ -576,27 +515,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 760.5, 306.0, 405.0, 306.0, 405.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-25", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-19", 1 ],
-					"source" : [ "obj-28", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-19", 0 ],
-					"source" : [ "obj-28", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 480.25, 156.0, 309.0, 156.0, 309.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-29", 0 ]
 				}
 
@@ -604,6 +531,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 575.25, 165.0, 309.0, 165.0, 309.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-30", 0 ]
 				}
 
@@ -611,6 +539,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 668.25, 165.0, 309.0, 165.0, 309.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-31", 0 ]
 				}
 
@@ -618,15 +547,8 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
+					"midpoints" : [ 760.25, 165.0, 309.0, 165.0, 309.0, 129.0, 256.5, 129.0 ],
 					"source" : [ "obj-32", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-34", 0 ],
-					"midpoints" : [ 132.5, 159.0, 234.0, 159.0, 234.0, 39.0, 256.5, 39.0 ],
-					"source" : [ "obj-33", 0 ]
 				}
 
 			}
@@ -712,13 +634,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-11", 0 ],
-					"source" : [ "obj-5", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-32", 0 ],
 					"hidden" : 1,
 					"source" : [ "obj-6", 0 ]
@@ -747,7 +662,6 @@
 			"obj-12" : [ "live.button[2]", "live.button", 0 ],
 			"obj-13" : [ "live.button[6]", "live.button", 0 ],
 			"obj-15" : [ "live.button[8]", "live.button", 0 ],
-			"obj-19" : [ "live.gain~", "live.gain~", 0 ],
 			"obj-4" : [ "live.button[7]", "live.button", 0 ],
 			"obj-6" : [ "live.button[4]", "live.button", 0 ],
 			"obj-7" : [ "live.button[3]", "live.button", 0 ],
