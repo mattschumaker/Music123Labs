@@ -1,0 +1,92 @@
+//------------------------------------------------------------------------------
+// Clarinet multisampler using sfizz~ in MaxMSP
+//
+// We're going to expand on our experience with .sfz files by making a clarinet
+// sampler that plays different sounds based on the velocity it receives from 
+// our MIDI controller. This is called a "multisampler", because, in contrast to
+// a sampler that just changes the outgoing volume of our sample based on MIDI
+// velocity, we have individual samples for the clarinet: one for playing very 
+// loud, and one for playing very soft.
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Regions continued
+// 
+// All of the <regions> we define for this sampler are going to use the same to
+// properties from our last sampler: key, and sample. However, we're going to
+// have to tell each region what velocities correspond with our loud sample, and
+// what velocities correspond with our quiet sample. In order to do this, we need
+// two things. First, we need to use the "lovel", "hivel", and "amp_velcurve"
+// properties. A <region> might look like this:
+// 
+// <region> key="number" sample="filename" lovel="number" hivel="number" amp_velcurve_63="1"
+//
+// What this region tells us is that 
+// We include the "amp_velcurve" property on <region>s that have a "hivel"
+// property less that 127. That's all you need to know about it, but the reason
+// we include it is because it undoes some of the automatic quieting the sampler
+// does. You can experiment by trying the sampler with it, and without it. Just
+// remember to use it for the <region>s associated with quiet samples only.
+//
+// So the <region> example above handles all MIDI key 70 presses with a velocity of
+// 0 to 63 will play that sample.But what about velocities above 63? Well, it turns 
+// out we have to make another <region> for key presses with those velocities. So, 
+// we'll have a pair of <region>s:
+//
+// <region> key=70 sample=ClBb-ord-A#3-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+// <region> key=70 sample=ClBb-ord-A#3-ff.wav lovel=64 hivel=127
+//
+// Remember that MIDI expects values between 0 and 127. In the case of velocity
+// it's pretty straightforward, since you can assume 0 will correspond with 
+// as quiet as possible, and 127 will correspond with as loud as possible. In
+// the case of MIDI pitch, you can use calculators/tables online, like this one:
+// https://soundprogramming.net/file-formats/midi-note-frequencies/ . Or, if you
+// want to get some practice in Max, maybe try programming your own way of 
+// figuring out what MIDI note you're playing.
+//
+// You can find a list of all of the files in the "clarinet-ordinario" folder.
+// Starting from the pair of <region>s below, you should be able to follow the
+// same pattern, with the only difference being the key and filename. We provided
+// the first half of the octave. Here are the rest of the filenames you'll need to
+// finish it:
+// 
+// ClBb-ord-F4-pp.wav
+// ClBb-ord-F4-ff.wav
+// ClBb-ord-F#4-pp.wav
+// ClBb-ord-F#4-ff.wav
+// ClBb-ord-G4-pp.wav
+// ClBb-ord-G4-ff.wav
+// ClBb-ord-G#4-pp.wav
+// ClBb-ord-G#4-ff.wav 
+// ClBb-ord-A4-pp.wav 
+// ClBb-ord-A4-ff.wav 
+// ClBb-ord-A#4-pp.wav 
+// ClBb-ord-A#4-ff.wav
+//------------------------------------------------------------------------------
+
+<region> key=70 sample=ClBb-ord-A#3-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=70 sample=ClBb-ord-A#3-ff.wav lovel=64 hivel=127
+<region> key=71 sample=ClBb-ord-B3-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=71 sample=ClBb-ord-B3-ff.wav lovel=64 hivel=127
+<region> key=72 sample=ClBb-ord-C4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=72 sample=ClBb-ord-C4-ff.wav lovel=64 hivel=127
+<region> key=73 sample=ClBb-ord-C#4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=73 sample=ClBb-ord-C#4-ff.wav lovel=64 hivel=127
+<region> key=74 sample=ClBb-ord-D4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=74 sample=ClBb-ord-D4-ff.wav lovel=64 hivel=127
+<region> key=75 sample=ClBb-ord-D#4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=75 sample=ClBb-ord-D#4-ff.wav lovel=64 hivel=127
+<region> key=76 sample=ClBb-ord-E4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=76 sample=ClBb-ord-E4-ff.wav lovel=64 hivel=127
+<region> key=77 sample=ClBb-ord-F4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=77 sample=ClBb-ord-F4-ff.wav lovel=64 hivel=127
+<region> key=78 sample=ClBb-ord-F#4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=78 sample=ClBb-ord-F#4-ff.wav lovel=64 hivel=127
+<region> key=79 sample=ClBb-ord-G4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=79 sample=ClBb-ord-G4-ff.wav lovel=64 hivel=127
+<region> key=80 sample=ClBb-ord-G#4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=80 sample=ClBb-ord-G#4-ff.wav lovel=64 hivel=127
+<region> key=81 sample=ClBb-ord-A4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=81 sample=ClBb-ord-A4-ff.wav lovel=64 hivel=127
+<region> key=82 sample=ClBb-ord-A#4-pp.wav lovel=0 hivel=63 amp_velcurve_63=1
+<region> key=82 sample=ClBb-ord-A#4-ff.wav lovel=64 hivel=127

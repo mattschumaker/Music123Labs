@@ -1,0 +1,48 @@
+//------------------------------------------------------------------------------
+// Drum sampler using sfizz~ in MaxMSP
+//
+// This is a .sfz file. It stores all the instructions that your sampler needs 
+// to operate. Everything after a pair of slashes is a comment. They are meant
+// to be read by you, but won't be read by the sampler. If you want to write in
+// your own comments to help you stay organized, feel free to do so. It's a good
+// habit to get into if you plan on getting into text-based code in the future.
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Regions
+// 
+// An sfz file is comprised of a number of "<regions>" that each have their own
+// set of instructions. In the case of our drum sampler, each <region> only
+// really needs two bits of essential information: what key is being pressed,
+// and what soundfile is going to play when that key is pressed. To specify a 
+// region, you can follow this syntax:
+// 
+// <region> key="number" sample="filename.extension"
+//
+// The MIDI keyboards in class have 8 pads that the patch will be programmed to
+// recognize. The MIDI numbers associated with those pads are 36-43, inclusive.
+//
+// The samples that you have access to are located in the "808" folder, but
+// here's a list of all of their filenames:
+//
+// cl_hihat.aif
+// claves.aif
+// conga1.aif
+// cowbell.aif
+// crashcym.aif
+// handclap.aif
+// hi_conga.aif
+// hightom.aif
+// kick1.aif
+// kick2.aif
+// maracas.aif
+// open_hh.aif
+// rimshot.aif
+// snare.aif
+// tom1.aif
+//------------------------------------------------------------------------------
+
+// Here's an example of what a region that uses MIDI key 36 to play kick1.aif
+// would look like
+
+<region> key=36 sample=kick1.aif
